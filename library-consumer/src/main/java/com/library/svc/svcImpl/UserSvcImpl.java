@@ -1,30 +1,30 @@
 package com.library.svc.svcImpl;
 
-import com.library.dao.model.Client;
-import com.library.dao.repository.ClientRepository;
-import com.library.svc.contracts.ClientSvc;
-import com.library.validation.ClientForm;
+import com.library.dao.model.User;
+import com.library.dao.repository.UserRepository;
+import com.library.svc.contracts.UserSvc;
+import com.library.validation.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ClientSvcImpl implements ClientSvc {
+public class UserSvcImpl implements UserSvc {
 
     // Config in WebSecurityConfig
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private ClientRepository repo;
+    private UserRepository repo;
 
     @Override
-    public void createClient(ClientForm clientForm) {
+    public void createClient(UserForm clientForm) {
 
         //Long userId = this.getMaxUserId() + 1;
         String encrytedPassword = this.passwordEncoder.encode(clientForm.getPassword());
 
-        Client client = new Client(clientForm.getFirstName(), //
+        User client = new User(clientForm.getFirstName(), //
                 clientForm.getLastName(), clientForm.getMail(), //
                 encrytedPassword);
 

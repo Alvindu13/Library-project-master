@@ -1,11 +1,9 @@
 package com.library.web.controller;
 
-import com.library.dao.model.Book;
-import com.library.dao.model.Client;
-import com.library.dao.repository.ClientRepository;
-import com.library.svc.contracts.ClientSvc;
-import com.library.web.exceptions.BookNotFoundException;
-import com.library.web.exceptions.ClientNofFoundException;
+import com.library.dao.model.User;
+import com.library.dao.repository.UserRepository;
+import com.library.svc.contracts.UserSvc;
+import com.library.web.exceptions.UserNofFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,40 +12,40 @@ import java.util.List;
 
 @RestController
 
-public class ClientController {
+public class UserController {
 
     @Autowired
-    ClientRepository repository;
+    UserRepository repository;
 
 
     @Autowired
-    ClientSvc svc;
+    UserSvc svc;
 
     // Find
-    @GetMapping("/clients")
-    List<Client> findAll() {
+    @GetMapping("/users")
+    List<User> findAll() {
         return repository.findAll();
     }
 
     // Save
-    @PostMapping("/clients")
+    @PostMapping("/users")
     //return 201 instead of 200
     @ResponseStatus(HttpStatus.CREATED)
-    Client newClient(@RequestBody Client newClient) {
+    User newClient(@RequestBody User newClient) {
         return repository.save(newClient);
     }
 
 
     // Find
-    @GetMapping("/clients/{id}")
-    Client findOne(@PathVariable Long id) {
+    @GetMapping("/users/{id}")
+    User findOne(@PathVariable Long id) {
         return repository.findById(id)
-                .orElseThrow(() -> new ClientNofFoundException(id));
+                .orElseThrow(() -> new UserNofFoundException(id));
     }
 
     // Save or update
-    @PutMapping("/clients/{id}")
-    Client saveOrUpdate(@RequestBody Client newClient, @PathVariable Long id) {
+    @PutMapping("/users/{id}")
+    User saveOrUpdate(@RequestBody User newClient, @PathVariable Long id) {
 
         return repository.findById(id)
                 .map(x -> {

@@ -1,11 +1,9 @@
 package com.library.dao.model;
 
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.Date;
 
 
 @Data
@@ -31,7 +29,7 @@ public class Book {
     private Boolean available;
 
     @ManyToOne
-    private Client borrower;
+    private User borrower;
 
 
 

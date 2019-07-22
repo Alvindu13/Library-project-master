@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class ClientForm {
+public class UserForm {
 
 
     @Id
@@ -21,10 +21,10 @@ public class ClientForm {
     private String password;
     private String confirmPassword;
 
-    public ClientForm() {
+    public UserForm() {
     }
 
-    public ClientForm(String firstName, String lastName, String mail, String encrytedPassword, String password, String confirmPassword) {
+    public UserForm(String firstName, String lastName, String mail, String encrytedPassword, String password, String confirmPassword) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;

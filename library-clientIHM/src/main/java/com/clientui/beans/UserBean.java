@@ -3,7 +3,7 @@ package com.clientui.beans;
 import org.hibernate.validator.internal.constraintvalidators.bv.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public class ClientBean {
+public class UserBean {
 
 
     private Long id;
@@ -11,7 +11,7 @@ public class ClientBean {
     private String mail;
     private String encrytedPassword;
 
-    public ClientBean() {
+    public UserBean() {
     }
 
 
@@ -50,7 +50,7 @@ public class ClientBean {
 
     @Override
     public String toString() {
-        return "ClientBean{" +
+        return "UserBean{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", mail='" + mail + '\'' +

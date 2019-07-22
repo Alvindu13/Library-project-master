@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @Entity
-public class Client {
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,10 +26,10 @@ public class Client {
     private String encrytedPassword;
 
 
-    public Client() {
+    public User() {
     }
 
-    public Client(String firstName, String lastName, String mail, String encrytedPassword) {
+    public User(String firstName, String lastName, String mail, String encrytedPassword) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.mail = mail;
@@ -78,7 +78,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
+        return "User{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +

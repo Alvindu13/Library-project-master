@@ -16,19 +16,20 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
+@RequestMapping("/books")
 public class BookController {
 
     @Autowired
     private BookRepository repository;
 
     // Find
-    @GetMapping("/books")
+    @GetMapping()
     List<Book> findAll() {
         return repository.findAll();
     }
 
     // Save test
-    @PostMapping("/books")
+    @PostMapping()
     //return 201 instead of 200
     @ResponseStatus(HttpStatus.CREATED)
     Book newBook(@RequestBody Book newBook) {
@@ -36,14 +37,14 @@ public class BookController {
     }
 
     // Find
-    @GetMapping("/books/{id}")
+    @GetMapping("/{id}")
     Book findOne(@PathVariable Long id) {
         return repository.findById(id)
                 .orElseThrow(() -> new BookNotFoundException(id));
     }
 
     // Save or update
-    @PutMapping("/books/{id}")
+    @PutMapping("/{id}")
     Book saveOrUpdate(@RequestBody Book newBook, @PathVariable Long id) {
 
         return repository.findById(id)
@@ -63,7 +64,7 @@ public class BookController {
     }
 
     // update author only
-    @PatchMapping("/books/{id}")
+    @PatchMapping("/{id}")
     Book patch(@RequestBody Map<String, String> update, @PathVariable Long id) {
 
         return repository.findById(id)
@@ -86,15 +87,20 @@ public class BookController {
 
     }
 
-    @DeleteMapping("/books/{id}")
+    @DeleteMapping("/{id}")
     void deleteBook(@PathVariable Long id) {
         repository.deleteById(id);
     }
 
 
-    @GetMapping("/books/count")
+    @GetMapping("/count")
     Count countBooks() {
         return new Count(repository.count());
+    }
+
+    @GetMapping("/user/{borrowerId}")
+    List<Book> borrowerBooks(@PathVariable Long borrowerId) {
+        return repository.findAllByBorrowerId(borrowerId);
     }
 
 }
